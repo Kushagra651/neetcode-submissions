@@ -1,18 +1,17 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        sort(s.begin(),s.end());
-        sort(t.begin(),t.end());
-        int st=0,et=0;
         if(s.length()!=t.length()) return false;
-        while(st<s.length()){
-            if(s[st]!=t[et]){
-                return false;
-            }
-            st++;
-            et++;
+        int check[26] = {0};
+        for(int i=0;i<s.length();i++){
+            check[s[i]-'a']++;
+        }
+        for(int i=0;i<t.length();i++){
+            check[t[i]-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(check[i]!=0) return false;
         }
         return true;
-        
     }
 };
